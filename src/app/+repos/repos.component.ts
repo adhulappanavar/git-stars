@@ -19,7 +19,7 @@ export class ReposComponent implements OnInit {
   private showLikesQuery: DocumentNode;
   private queryObservable: ApolloQueryObservable<QueryResponse>;
   private reposListSubscription: Subscription;
-  private reposList: Repo[];
+  public reposList: Repo[];
   private loading: boolean;
   constructor(
     private apollo: Apollo

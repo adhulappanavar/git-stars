@@ -21,7 +21,7 @@ export function provideClient(): ApolloClient {
   ],
   imports: [
     BrowserModule,
-    MdCardModule, 
+    MdCardModule,
     MdIconModule,
     MdToolbarModule,
      ApolloModule.forRoot(provideClient),
