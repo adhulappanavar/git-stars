@@ -46,6 +46,7 @@ export class RepoListComponent implements OnInit {
  loading: boolean = true;
   reposList:any;
 allReposes:any;
+allReposesCopy:any;
 reposListSub:Subscription;
 repoLike:number;
 
@@ -60,8 +61,13 @@ repoLike:number;
        this.reposListSub=queryObservable.subscribe(({data,loading}) => {
         
         console.log(data) 
-          this.reposList= data.allReposes
+        this.allReposesCopy = JSON.parse(JSON.stringify(data));
+        this.allReposesCopy.allReposes.sort((a: any, b: any) => {
+        return b.likes - a.likes;
+        });
+        this.reposList = this.allReposesCopy.allReposes;
         this.loading = loading;
+        
         }
        );
 
