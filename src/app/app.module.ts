@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ApolloModule } from 'apollo-angular';
@@ -23,7 +24,14 @@ export function provideClient(): ApolloClient {
     MdCardModule, 
     MdIconModule,
     MdToolbarModule,
-     ApolloModule.forRoot(provideClient)
+     ApolloModule.forRoot(provideClient),
+     RouterModule.forRoot([{
+       path: 'repos',
+       loadChildren: './+repos/repos.module#ReposModule'
+     }, {
+       path: 'repo-list',
+       component : RepoListComponent
+     }])
   ],
   providers: [],
   bootstrap: [AppComponent]
