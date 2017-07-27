@@ -26,11 +26,15 @@ export function provideClient(): ApolloClient {
     MdToolbarModule,
      ApolloModule.forRoot(provideClient),
      RouterModule.forRoot([{
-       path: 'repos',
-       loadChildren: './+repos/repos.module#ReposModule'
-     }, {
        path: 'repo-list',
        component : RepoListComponent
+     }, {
+       path: '',
+       loadChildren: './+repos/repos.module#ReposModule'
+     }, {
+       path: '**',
+       redirectTo: '',
+       pathMatch: 'full'
      }])
   ],
   providers: [],

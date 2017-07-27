@@ -89,7 +89,6 @@ subscription {
       variables: null
     }, (err, res) => {
       console.log(`Error retrieving data`, err);
-      this.loading = true;
       this.queryObservable.refetch();
     });
   }
@@ -99,7 +98,8 @@ subscription {
     const repoLikedCount = repoLiked[0] ? repoLiked[0].likes + 1 : 0;
     if (repoLikedCount) {
       console.log(`You clicked repo with id:${id} and updated like count to ${repoLikedCount}`);
-      this.apollo.mutate < QueryResponse > ({
+      this.loading = true;
+      this.apollo.mutate <QueryResponse> ({
         mutation: this.likeRepoQuery,
         variables: {
           id,
