@@ -6,7 +6,7 @@ import {client} from './client'
 import { ApolloClient } from 'apollo-client';
 import { RepoListComponent } from './repo-list/repo-list.component';
 
-import {MdCardModule, MdIconModule} from '@angular/material';
+import {MdCardModule, MdIconModule,MdToolbarModule} from '@angular/material';
 
 export function provideClient(): ApolloClient {
   return client;
@@ -22,7 +22,8 @@ export function provideClient(): ApolloClient {
     BrowserModule,
     MdCardModule, 
     MdIconModule,
-    ApolloModule.forRoot(provideClient)
+    MdToolbarModule,
+     ApolloModule.forRoot(provideClient)
   ],
   providers: [],
   bootstrap: [AppComponent]
