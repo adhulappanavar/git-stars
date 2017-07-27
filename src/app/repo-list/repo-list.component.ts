@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo} from 'apollo-angular';
 import {Subscription} from 'rxjs/Subscription';
 import gql from 'graphql-tag';
+import {SubscriptionClient,addGraphQLSubscriptions} from 'subscriptions-transport-ws'
 import{DocumentNode} from 'graphql'
 
 const repoList:DocumentNode=gql`
@@ -24,30 +25,75 @@ mutation updateLikes ($id:ID!, $likes: Int!) {
 }
 `
 
+const showLikes:DocumentNode=gql`
+subscription {
+  Repos {
+    mutation
+    node {
+      likes
+      repoName
+    }
+  }
+}
+`
+
 @Component({
   selector: 'gs-repo-list',
   templateUrl: './repo-list.component.html',
   styleUrls: ['./repo-list.component.css']
 })
 export class RepoListComponent implements OnInit {
-repos:any;
+ loading: boolean = true;
+  reposList:any;
+allReposes:any;
+reposListSub:Subscription;
 repoLike:number;
+
 
   constructor(private apollo:Apollo) { }
 
   ngOnInit() {
 
-  this.apollo.watchQuery<QueryResponse>({ query: repoList })
-        .subscribe(({data}) => {
-          console.log(data) 
-          this.repos= data.allReposes}
+  const queryObservable = this.apollo.watchQuery<QueryResponse>({
+      query: repoList
+    })
+       this.reposListSub=queryObservable.subscribe(({data,loading}) => {
+        
+        console.log(data) 
+          this.reposList= data.allReposes
+        this.loading = loading;
+        }
        );
+
+          const wsClient = new SubscriptionClient('wss://subscriptions.graph.cool/v1/cj5ld6rzgk6r80122xbcvpvcj', {
+      timeout: 10000,
+      reconnect: true
+    })
+
+
+wsClient.subscribe({
+      query:`
+subscription {
+  Repos {
+    mutation
+    node {
+      likes
+      repoName
+    }
+  }
+}
+      `,
+      variables: null
+    }, (err, res) => {
+      console.log('--')
+      console.log(err)
+      queryObservable.refetch()
+    })
 
   }
 
  public addLike(id:string){
-
-  this.repoLike=this.repos.filter(repo => repo.id === id);
+  this.repoLike=this.reposList.filter(repo => repo.id === id);
 this.repoLike=this.repoLike[0].likes+1;
 
    console.log('you clicked'+id,this.repoLike)
@@ -69,8 +115,9 @@ this.repoLike=this.repoLike[0].likes+1;
 
 export interface QueryResponse{
   allReposes:{
-    repos:Repo[]
+    repos:any
   }
+
 }
 export interface Repo{
   id:string,

@@ -1,8 +1,8 @@
-<div *ngFor="let repo of repos" >
+<div *ngFor="let repo of reposList" >
   <md-card>
   <img src={{repo.logoUrl}} />
     <md-card-title>{{repo.repoName}}</md-card-title>
- {{repo.likes}} <md-icon (click)=addLike(repo.id)>star</md-icon>
+ {{repo.likes}} <md-icon type="button" (click)=addLike(repo.id)>star</md-icon>
   </md-card>
 </div>
 
