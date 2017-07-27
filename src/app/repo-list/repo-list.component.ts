@@ -67,12 +67,12 @@ this.repoLike=this.repoLike[0].likes+1;
 
 }
 
-interface QueryResponse{
+export interface QueryResponse{
   allReposes:{
     repos:Repo[]
   }
 }
-interface Repo{
+export interface Repo{
   id:string,
   repoName:string,
   LogoUrl:string,
