@@ -20,7 +20,7 @@ export class ReposComponent implements OnInit {
   private queryObservable: ApolloQueryObservable<QueryResponse>;
   private reposListSubscription: Subscription;
   public reposList: Repo[];
-  private loading: boolean;
+  public loading: boolean;
   constructor(
     private apollo: Apollo
   ) { }

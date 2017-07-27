@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ApolloModule } from 'apollo-angular';
 import { AppComponent } from './app.component';
-import {client} from './client'
+import { client } from './client'
 import { ApolloClient } from 'apollo-client';
 import { RepoListComponent } from './repo-list/repo-list.component';
 
-import {MdCardModule, MdIconModule,MdToolbarModule} from '@angular/material';
+import { MdCardModule, MdIconModule, MdToolbarModule} from '@angular/material';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 export function provideClient(): ApolloClient {
   return client;
@@ -17,7 +19,9 @@ export function provideClient(): ApolloClient {
 @NgModule({
   declarations: [
     AppComponent,
-    RepoListComponent
+    RepoListComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
