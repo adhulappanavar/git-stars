@@ -3,3 +3,21 @@ font-size:75px;
     color: green;
     cursor: pointer;
 }
+
+.card{
+width:250px;
+padding:10px;
+float: left;
+margin:10px;
+text-align: center;
+}
+
+
+.count{
+    font-size:75px;
+    float: left;
+    text-align: center;
+}
+img{
+    height: 250px;
+}
