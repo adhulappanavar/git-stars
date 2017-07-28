@@ -4,21 +4,32 @@
       <div class="column is-4-tablet is-3-desktop" *ngFor="let repo of reposList">
         <div class="card">
           <header class="card-header">
-            <p class="card-header-title">
-              {{repo.repoName}}
-            </p>
-            <a class="card-header-icon">
-           <span class="tag is-dark">{{repo.likes}}</span>
-          </a>
+            <div class="level">
+              <div class="level-item has-text-centered">
+                <div>
+                    <p class="title repo-title">
+                      {{repo.repoName}}
+                    </p>
+                </div>
+              </div>
+            </div>
           </header>
-          <div class="card-content">
+          <div class="card-content" (click)="addLike(repo.id)">
+            <div class="level">
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Stars</p>
+                  <p class="title stars-title">{{repo.likes}} <span class="icon is-medium has-text-warning"><i class="fa fa-star"></i></span></p>
+                </div>
+              </div>
+            </div>
             <div class="logo-image">
               <img [src]="repo.logoUrl" [alt]="repo.repoName">
             </div>
           </div>
-          <footer class="card-footer">
+          <!-- <footer class="card-footer">
             <a class="card-footer-item" (click)="addLike(repo.id)">Like <span class="icon"><i class="fa fa-heart"></i></span></a>
-          </footer>
+          </footer> -->
         </div>
       </div>
     </div>
