@@ -70,8 +70,8 @@ repoLike:number;
         
         }
        );
-
-          const wsClient = new SubscriptionClient('wss://subscriptions.graph.cool/v1/cj5ld6rzgk6r80122xbcvpvcj', {
+// a Subscription endpoint would look something like wss://subscriptions.graph.cool/v1/abc23445fkfdkjrerdfdf
+          const wsClient = new SubscriptionClient('<ENTER YOUR SUBSCRIPTION ENDPOINT>', {
       timeout: 10000,
       reconnect: true
     })
