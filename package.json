@@ -32,9 +32,10 @@
     "angular-apollo": "4.1.4",
     "apollo-angular": "0.13.0",
     "apollo-client": "1.8.0",
+    "bulma": "^0.5.0",
     "core-js": "^2.4.1",
     "graphql-tag": "^2.4.2",
-    "lodash": "^4.17.4",
+    "lodash.sortby": "^4.7.0",
     "rxjs": "^5.1.0",
     "subscriptions-transport-ws": "^0.8.1",
     "zone.js": "^0.8.4"
